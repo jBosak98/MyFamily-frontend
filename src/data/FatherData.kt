@@ -1,6 +1,5 @@
 package data
 
-import react.Child
 import kotlin.js.Date
 
 
@@ -10,5 +9,5 @@ external interface FatherData {
     val lastName: String?
     val pesel: Int
     var dateOfBirth: Date
-    val children: Set<Child>
+    val children: Array<Child>
 }
