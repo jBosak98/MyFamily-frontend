@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    background: #F2F2F2;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+}
+
+body #root div div {
+    padding: 30px 50px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 70px auto;
+    height: 100%;
+
+    padding: 0;
+    margin: 0;
+}
+.sidebar{
+    grid-template-columns: 70px auto;
+    width: 65px;
+    float: left;
+    padding: 0;
+    margin-right: 15px;
+    background:#2D2E2E;
+    height: 100%;
+}
+.sidebar-list{
+    width: inherit;
+    height: 100%;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    background:#2D2E2E;
+
+}
+.sidebar-link{
+    color: #fff;
+    padding: 20px;
+    display: block;
+}
+.sidebar-element{
+    background: #2D2E2E;
+}
+.content {
+    width: auto;
+    float: left;
+    position: relative;
+    margin: 15px;
+
+}
+.content ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.content ul li {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+
+}
+
+.content ul li a {
+    font-size: 1.5em;
+    text-decoration: none;
+    font-weight: bold;
+    color: #00A8FF;
+}
+.content ul li ul {
+    list-style-type: none;
+    margin-top: 20px;
+}
+
+.content ul li ul li {
+    padding: 0;
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+.content ul li ul li a {
+    font-size: 1em;
+    font-weight: 300;
+}
+.header {
+    font-size: 2.5rem;
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+}
+
+.addFamily {
+    float: left;
+    position: relative;
+}
