@@ -2,6 +2,7 @@ package app
 
 import components.ShowFamilyComponent
 import components.AddFamilyComponent
+import components.detailsComponent
 import react.RBuilder
 import react.RComponent
 import react.RProps
@@ -36,6 +37,11 @@ class Application : RComponent<Application.ApplicationRProps, Application.Applic
             browserRouter {
                 switch {
                     route("/add", AddFamilyComponent::class, exact = true)
+                    route<RProps>("/details/:id") { props ->
+                        console.log(props.location.pathname.split("/")[2])
+
+                        detailsComponent(props.location.pathname.split("/")[2])
+                    }
                     route("/", ShowFamilyComponent::class, exact = false)
                 }
             }
