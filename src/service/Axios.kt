@@ -1,8 +1,16 @@
-@file:Suppress("INTERFACE_WITH_SUPERCLASS", "OVERRIDING_FINAL_MEMBER", "RETURN_TYPE_MISMATCH_ON_OVERRIDE", "CONFLICTING_OVERLOADS", "EXTERNAL_DELEGATION", "NESTED_CLASS_IN_EXTERNAL_INTERFACE")
+@file:Suppress("INTERFACE_WITH_SUPERCLASS",
+        "OVERRIDING_FINAL_MEMBER",
+        "RETURN_TYPE_MISMATCH_ON_OVERRIDE",
+        "CONFLICTING_OVERLOADS",
+        "EXTERNAL_DELEGATION",
+        "NESTED_CLASS_IN_EXTERNAL_INTERFACE",
+        "UnsafeCastFromDynamic")
 
-package service.axios
+
+package service
 
 import kotlin.js.Promise
+
 
 external interface AxiosTransformer {
     @nativeInvoke
@@ -122,6 +130,6 @@ external interface AxiosStatic : AxiosInstance {
     fun <T, R> spread(callback: (args: T) -> R): (array: Array<T>) -> R
 }
 
+////@JsName("default")
 @JsModule("axios")
-//@JsName("default")
 external val Axios: AxiosStatic = definedExternally

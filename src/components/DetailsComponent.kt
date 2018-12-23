@@ -6,16 +6,11 @@ import react.dom.*
 import service.getFamily
 
 class DetailsComponent : RComponent<DetailsProps, DetailsState>() {
+
     override fun componentDidMount() {
-        console.log("id${props.id}")
-        getFamily(props.id).then {
-            setState {
-                family = it
-                console.log(family)
-            }
-        }.catch { e ->
-            console.log(e)
-        }
+        getFamily(props.id)
+                .then { setState { family = it } }
+                .catch { e -> console.log(e) }
     }
 
     override fun RBuilder.render() {
@@ -61,12 +56,11 @@ class DetailsComponent : RComponent<DetailsProps, DetailsState>() {
 
     }
 
-    private fun RBuilder.tableElement(type: String, value: String) {
-        tr {
+    private fun RBuilder.tableElement(type: String, value: String) = tr {
             td { +type }
             th { +value }
-        }
     }
+
 
 }
 
@@ -75,9 +69,9 @@ interface DetailsState : RState {
 }
 
 interface DetailsProps : RProps {
-    var id: Int
+    var id: Long
 }
 
-fun RBuilder.detailsComponent(s: String) = child(DetailsComponent::class) {
-    this.attrs.id = s.toInt()
+fun RBuilder.detailsComponent(userId: Long) = child(DetailsComponent::class) {
+    attrs { id = userId }
 }

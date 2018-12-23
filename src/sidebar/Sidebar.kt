@@ -1,38 +1,48 @@
 package sidebar
 
+import app.MainView
+import kotlinext.js.js
+import kotlinx.html.js.onClickFunction
+import kotlinx.html.style
 import react.RBuilder
 import react.RComponent
 import react.RProps
 import react.RState
 import react.dom.*
 
-class Sidebar: RComponent<RProps, RState>() {
+class Sidebar: RComponent<Sidebar.SidebarProps, RState>() {
+
     override fun RBuilder.render() {
         nav("sidebar") {
             ul("sidebar-list") {
-                li ("sidebar-element"){
-                    a ("/",null,"sidebar-link"){
-                        i("material-icons"){
-                            +"supervised_user_circle"
-                        }
-                    }
-                }
-                li("sidebar-element") {
-                    a ("/search",null,"sidebar-link"){
-                        i ("material-icons"){
-                            +"search"
-                        }
-                    }
-                }
-                li("sidebar-element"){
-                    a("/add",null,"sidebar-link") {
-                        i("material-icons") {
-                            +"add_circle"
-                        }
-                    }
+                sidebarItem("supervised_user_circle", MainView.show)
+                sidebarItem("search", MainView.search)
+                sidebarItem("add_circle", MainView.add)
+            }
+        }
+    }
 
+
+    interface SidebarProps: RProps {
+        var handler: (MainView) -> Unit
+        var actualView: MainView
+    }
+
+    fun RBuilder.sidebarItem(name:String, view: MainView){
+        li("sidebar-element"){
+            a(null,null,"sidebar-link") {
+                i("material-icons") {
+                    +name
+                    attrs { onClickFunction = { props.handler(view) } }
+                }
+
+            }
+            if (view == props.actualView){
+                attrs.style = js {
+                    background = "#00a8ff"
                 }
             }
-        }    }
+        }
+    }
 
 }

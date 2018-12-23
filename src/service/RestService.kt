@@ -3,10 +3,10 @@ package service
 import data.FatherData
 import data.FatherPostData
 import kotlinext.js.jsObject
-import service.axios.Axios
-import service.axios.AxiosRequestConfig
 import kotlin.js.Date
 import kotlin.js.Promise
+import service.Axios
+
 
 fun postFamily(family: FatherPostData) {
     val postFamiliConfig: AxiosRequestConfig = jsObject {
@@ -23,7 +23,7 @@ fun postFamily(family: FatherPostData) {
 
 }
 
-fun familiesService(): Promise<Array<FatherData>>{
+fun familiesService(): Promise<Array<FatherData>> {
     val getFamiliesConfig: AxiosRequestConfig = jsObject {
         url = restStrings.GET_METHOD
         method = restStrings.GET_METHOD
@@ -40,7 +40,7 @@ fun familiesService(): Promise<Array<FatherData>>{
         }
 }
 
-fun getFamily(id: Int): Promise<FatherData>{
+fun getFamily(id: Long): Promise<FatherData> {
     val getFamilyConfig: AxiosRequestConfig = jsObject {
         url = "${restStrings.FAMILY_DETAILS_GET_URL}$id"
         method = restStrings.GET_METHOD
@@ -69,9 +69,10 @@ fun fixDate(d: Date): Date{
 
 
 object restStrings {
-    const val FAMILIES_GET_URL = "http://192.168.191.130:8080/api/fathers"
-    const val FAMILY_POST_URL = "http://192.168.191.130:8080/api/father/add"
-    const val FAMILY_DETAILS_GET_URL = "http://192.168.191.130:8080/api/father/"
+    private const val HOST_URL = "http://192.168.1.4:8080"
+    const val FAMILIES_GET_URL = "$HOST_URL/api/fathers"
+    const val FAMILY_POST_URL = "$HOST_URL/api/father/add"
+    const val FAMILY_DETAILS_GET_URL = "$HOST_URL/api/father/"
     const val POST_METHOD = "post"
     const val GET_METHOD = "get"
 

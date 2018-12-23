@@ -24,26 +24,27 @@ class AddFamilyComponent: RComponent<RProps, RState>() {
 
             var itemsInRow = 3
             div {
-                attrs.style = js {
-                    position =  "flex"
-                    alignItems = "center"
-                    justifyContent = "center"
-                    display = "flex"
-                    flexDirection = "column"
-                } as String
+                +"addFamily"
+//                attrs.style = js {
+//                    position =  "flex"
+//                    alignItems = "center"
+//                    justifyContent = "center"
+//                    display = "flex"
+//                    flexDirection = "column"
+//                } as String
                 for(numOfRow in 0..5/itemsInRow){
                     div{
-                        attrs.style = js {
-                            display = "flex"
-                            flexDirection = "row"
-                            alignItems = "center"
-                        } as String
+//                        attrs.style = js {
+//                            display = "flex"
+//                            flexDirection = "row"
+//                            alignItems = "center"
+//                        } as String
                         console.log(numOfRow.toString())
                         for (numOfColumn in numOfRow*itemsInRow until 5) {
                             if (numOfColumn >= itemsInRow*(numOfRow+1)){
                                 break
                             }
-                            nextChild(numOfColumn+numOfRow*itemsInRow)
+//                            nextChild(numOfColumn+numOfRow*itemsInRow)
                         }
                     }
                 }
@@ -54,7 +55,13 @@ class AddFamilyComponent: RComponent<RProps, RState>() {
         }
     }
 
+
 }
+fun RBuilder.addFamilyComponent() = child(AddFamilyComponent::class) {
+
+
+}
+
 
 private fun RBuilder.nextChild(index: Int){
 //    var child: dataClass.Child? = dataClass.Child(null,null,null, null,null)

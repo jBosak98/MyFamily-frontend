@@ -1,76 +1,54 @@
 package app
 
-import components.ShowFamilyComponent
-import components.AddFamilyComponent
-import components.detailsComponent
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import components.*
+import react.*
 import react.dom.div
-import react.router.dom.browserRouter
-import react.router.dom.route
-import react.router.dom.switch
 import sidebar.Sidebar
 
 
 class Application : RComponent<Application.ApplicationRProps, Application.ApplicationRState>() {
 
-
-    init {
-        state = ApplicationRState(MainView.show)
-    }
-
-    override fun componentDidMount() {
-
-//            state =  MainView.show
-
-    }
+    init { if(state.selected == null ) state = ApplicationRState(MainView.show,null) }
 
     override fun RBuilder.render() {
-
-
-
-        console.log(state.selected)
         div ("container") {
             sidebar()
-            browserRouter {
-                switch {
-                    route("/add", AddFamilyComponent::class, exact = true)
-                    route<RProps>("/details/:id") { props ->
-                        console.log(props.location.pathname.split("/")[2])
-
-                        detailsComponent(props.location.pathname.split("/")[2])
-                    }
-                    route("/", ShowFamilyComponent::class, exact = false)
-                }
-            }
             when(state.selected) {
-//                MainView.show  -> showFamilyComponent()
-//                    showFamilyComponent()
-//                MainView.details -> detailsComponent()
+                MainView.show  -> showFamilyComponent()
+                MainView.search -> searchFamilyComponent()
+                MainView.details -> detailsComponent(state.userId!!)
+                MainView.add -> addFamilyComponent()
 
             }
-
-
         }
-
     }
 
 
-
-    interface ApplicationRProps : RProps {
-
+    fun RBuilder.sidebar()  = child(Sidebar::class ){
+            attrs {
+                actualView = state.selected
+                handler = { navBarSelected(it) }
+            }
     }
 
-    class ApplicationRState(var selected: MainView) : RState
+    fun RBuilder.showFamilyComponent() = child(ShowFamilyComponent::class) {
+        attrs {
+            userId = { setState { userId = it } }
+            handler = { navBarSelected(it) }
+        }
+    }
+
+
+    private fun navBarSelected(newSelected: MainView) = setState { selected = newSelected }
+
+    interface ApplicationRProps : RProps {}
+
+    class ApplicationRState(var selected: MainView, var userId: Long?) : RState
 }
 
 
 
-fun RBuilder.Application() = child(Application::class) {
-
-}
+fun RBuilder.Application() = child(Application::class) { }
 
 enum class MainView {
     show,
@@ -79,6 +57,4 @@ enum class MainView {
     details
 }
 
- fun RBuilder.sidebar()  = child(Sidebar::class ){
 
- }
