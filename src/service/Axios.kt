@@ -9,6 +9,7 @@
 
 package service
 
+import kotlinx.html.InputFormMethod
 import kotlin.js.Promise
 
 
@@ -35,7 +36,7 @@ external interface AxiosProxyConfig {
 }
 external interface AxiosRequestConfig {
     var url: String? get() = definedExternally; set(value) = definedExternally
-    var method: String? get() = definedExternally; set(value) = definedExternally
+    var method: InputFormMethod? get() = definedExternally; set(value) = definedExternally
     var baseURL: String? get() = definedExternally; set(value) = definedExternally
     var transformRequest: dynamic /* AxiosTransformer | Array<AxiosTransformer> */ get() = definedExternally; set(value) = definedExternally
     var transformResponse: dynamic /* AxiosTransformer | Array<AxiosTransformer> */ get() = definedExternally; set(value) = definedExternally
@@ -130,6 +131,6 @@ external interface AxiosStatic : AxiosInstance {
     fun <T, R> spread(callback: (args: T) -> R): (array: Array<T>) -> R
 }
 
-////@JsName("default")
+//@JsName("default")
 @JsModule("axios")
 external val Axios: AxiosStatic = definedExternally

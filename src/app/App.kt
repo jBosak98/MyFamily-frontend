@@ -4,21 +4,22 @@ import components.*
 import react.*
 import react.dom.div
 import sidebar.Sidebar
+import react.router.dom.LinkProps
 
 
-class Application : RComponent<Application.ApplicationRProps, Application.ApplicationRState>() {
+class Application : RComponent<RProps, Application.ApplicationRState>() {
 
     init { if(state.selected == null ) state = ApplicationRState(MainView.show,null) }
 
     override fun RBuilder.render() {
+
         div ("container") {
             sidebar()
             when(state.selected) {
-                MainView.show  -> showFamilyComponent()
                 MainView.search -> searchFamilyComponent()
                 MainView.details -> detailsComponent(state.userId!!)
-                MainView.add -> addFamilyComponent()
-
+                MainView.addFamily -> addFamilyComponent()
+                MainView.show  -> showFamilyComponent()
             }
         }
     }
@@ -41,7 +42,6 @@ class Application : RComponent<Application.ApplicationRProps, Application.Applic
 
     private fun navBarSelected(newSelected: MainView) = setState { selected = newSelected }
 
-    interface ApplicationRProps : RProps {}
 
     class ApplicationRState(var selected: MainView, var userId: Long?) : RState
 }
@@ -52,7 +52,7 @@ fun RBuilder.Application() = child(Application::class) { }
 
 enum class MainView {
     show,
-    add,
+    addFamily,
     search,
     details
 }

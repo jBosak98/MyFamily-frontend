@@ -1,7 +1,7 @@
 package components
 
 import app.MainView
-import data.FatherData
+import data.FatherEntity
 import kotlinx.html.js.onClickFunction
 import react.*
 import react.dom.*
@@ -14,7 +14,7 @@ class ShowFamilyComponent : RComponent<ShowFamilyProps, ShowFamilyComponent.Show
     override fun componentDidMount() {
         familiesService()
                 .then { result -> setState { result.toCollection(families) } }
-                .catch { e -> console.log(e.toString()) }
+                .catch { e -> console.log(e) }
     }
 
     override fun RBuilder.render() {
@@ -25,7 +25,7 @@ class ShowFamilyComponent : RComponent<ShowFamilyProps, ShowFamilyComponent.Show
                 if ( !state.families.isNullOrEmpty())
                     for (i in state.families)
                         li {
-                            a{
+                            a(classes = "pointer-cursor"){
                                 +"${i.firstName} ${i.lastName}"
                                 attrs {
                                     onClickFunction = {
@@ -36,8 +36,8 @@ class ShowFamilyComponent : RComponent<ShowFamilyProps, ShowFamilyComponent.Show
 
                             }
                             ul {
-                                li { +"PESEL ${i.pesel}" }
-                                i.dateOfBirth.let { it ->
+                                li { +"INPUT_PESEL ${i.pesel}" }
+                                i.dateOfBirth?.let { it ->
                                     li { +"Date of birthday: ${it.getDate()}.${it.getMonth()}.${it.getFullYear()}" }
                                 }
                             }
@@ -51,7 +51,7 @@ class ShowFamilyComponent : RComponent<ShowFamilyProps, ShowFamilyComponent.Show
 
 
     interface ShowFamilyState : RState {
-        var families: MutableList<FatherData>
+        var families: MutableList<FatherEntity>
     }
 }
 

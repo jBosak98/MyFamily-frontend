@@ -17,7 +17,7 @@ class Sidebar: RComponent<Sidebar.SidebarProps, RState>() {
             ul("sidebar-list") {
                 sidebarItem("supervised_user_circle", MainView.show)
                 sidebarItem("search", MainView.search)
-                sidebarItem("add_circle", MainView.add)
+                sidebarItem("add_circle", MainView.addFamily)
             }
         }
     }
@@ -30,17 +30,15 @@ class Sidebar: RComponent<Sidebar.SidebarProps, RState>() {
 
     fun RBuilder.sidebarItem(name:String, view: MainView){
         li("sidebar-element"){
-            a(null,null,"sidebar-link") {
-                i("material-icons") {
+            a(classes = "sidebar-link") {
+                i("material-icons pointer-cursor") {
                     +name
                     attrs { onClickFunction = { props.handler(view) } }
                 }
 
             }
             if (view == props.actualView){
-                attrs.style = js {
-                    background = "#00a8ff"
-                }
+                attrs.style = js { background = "#00a8ff" }
             }
         }
     }

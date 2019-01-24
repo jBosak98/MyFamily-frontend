@@ -1,6 +1,6 @@
 package components
 
-import data.FatherData
+import data.FatherEntity
 import react.*
 import react.dom.*
 import service.getFamily
@@ -39,8 +39,8 @@ class DetailsComponent : RComponent<DetailsProps, DetailsState>() {
                         li {
                             table {
                                 tbody {
-                                    tableElement("IMIE", i.firstName!!)
-                                    tableElement("NAZWISKO", i.lastName!!)
+                                    tableElement("firstName", i.firstName!!)
+                                    tableElement("lastName", i.lastName!!)
                                     tableElement("PESEL", i.pesel.toString())
                                     i.dateOfBirth?.apply {
                                         tableElement("DATE OF BIRTHDAY", "${getDate()}.${getMonth()}.${getFullYear()}")
@@ -65,7 +65,7 @@ class DetailsComponent : RComponent<DetailsProps, DetailsState>() {
 }
 
 interface DetailsState : RState {
-    var family: FatherData?
+    var family: FatherEntity?
 }
 
 interface DetailsProps : RProps {

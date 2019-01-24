@@ -1,14 +1,12 @@
 package data
 
-import kotlin.js.Date
 
-
-data class ChildPostData (
+data class ChildValueObject (
         var firstName: String?,
         var lastName: String?,
-        var pesel: Int,
+        var pesel: String?,
         var dateOfBirth: String?,
-        var gender: Int
+        var gender: Int?
 
 //    companion object {
 //

@@ -5,9 +5,9 @@ body {
     height: 100vh;
 }
 
-body #root div div {
-    padding: 30px 50px;
-}
+/*body #root div div {*/
+    /*padding: 0px;*/
+/*}*/
 
 .container {
     display: grid;
@@ -42,8 +42,10 @@ body #root div div {
     display: block;
 }
 .sidebar-element{
+
     background: #2D2E2E;
 }
+
 .content {
     width: auto;
     float: left;
@@ -56,6 +58,16 @@ body #root div div {
     margin: 0;
     padding: 0;
 }
+.content-white-padding {
+    padding-top: 40px;
+    padding-right: 80px;
+    padding-left: 80px;
+    padding-bottom: 0px;
+    display: inline-block;
+}
+.inline-block{
+    display: inline-block;
+}
 
 .content ul li {
     background: #fff;
@@ -64,8 +76,8 @@ body #root div div {
     margin-bottom: 10px;
     margin-right: 20px;
     margin-left: 20px;
-
 }
+
 
 .content ul li a {
     font-size: 1.5em;
@@ -90,7 +102,7 @@ body #root div div {
 .header {
     font-size: 2.5rem;
     margin-bottom: .5rem;
-    font-family: inherit;
+
     font-weight: 500;
     line-height: 1.2;
     color: inherit;
@@ -99,4 +111,108 @@ body #root div div {
 .addFamily {
     float: left;
     position: relative;
+}
+.input {
+    padding: .375rem .75rem;
+    font-family: 'Montserrat', sans-serif;
+    background-clip: padding-box;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0.25rem;
+    border-color: #ced4da;
+
+    height: calc(1.25rem + 2px);
+
+}
+.input-label {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+}
+.submit-icon {
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.new-father-header {
+    font-weight: 500;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    display: inline-block;
+    padding: 0px 230px;
+}
+.pointer-cursor {
+    cursor: pointer;
+}
+.text-to-left {
+    padding: 0;
+    text-align: left;
+
+}
+form div div {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+.whole-width {
+    width: 100%;
+}
+
+.add-child-element {
+    display: inline-block;
+    padding: 20px 70px 50px 50px;
+}
+.child-input-margin {
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+
+
+
+
+
+
+.flip-box {
+    display: inline-block;
+    background-color: transparent;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.flip-box-inner {
+    position: relative;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-box:active .flip-box-inner {
+    transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-box-front, .flip-box-back {
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-box-front {
+    background-color: #fff;
+    color: black;
+}
+
+/* Style the back side */
+.flip-box-back {
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.hover{
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
